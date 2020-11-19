@@ -1,14 +1,15 @@
 " Author: Oskar Haarklou Veileborg https://github.com/BarrensZeppelin
 " Description: Tiger linter using our own compiler
 
-call ale#Set('tiger_semant_executable', 'tigerc')
+call ale#Set('tiger_tigerc_executable', 'tigerc')
 
-function! ale_linters#tiger#semant#GetCommand(buffer) abort
-  return fnameescape(ale#Var(a:buffer, 'tiger_semant_executable'))
+function! ale_linters#tiger#tigerc#GetCommand(buffer) abort
+  " TODO: Detect if sem phase is available?
+  return fnameescape(ale#Var(a:buffer, 'tiger_tigerc_executable'))
         \ . ' -p sem /dev/stdin'
 endfunction
 
-function! ale_linters#tiger#semant#Handle(buffer, lines) abort
+function! ale_linters#tiger#tigerc#Handle(buffer, lines) abort
   let l:pattern = [
         \ '\v^Lexing error in file /dev/stdin at position (\d+):(\d+)',
         \ '\v^/dev/stdin:(\d+):(\d+)( - )?(\d+)?:?(\d+)?: (.*)$',
@@ -34,9 +35,9 @@ function! ale_linters#tiger#semant#Handle(buffer, lines) abort
 endfunction
 
 call ale#linter#Define('tiger', {
-\ 'name': 'semant',
-\ 'executable': {b -> ale#Var(b, 'tiger_semant_executable')},
-\ 'command': {b -> ale_linters#tiger#semant#GetCommand(b)},
-\ 'callback': 'ale_linters#tiger#semant#Handle',
+\ 'name': 'tigerc',
+\ 'executable': {b -> ale#Var(b, 'tiger_tigerc_executable')},
+\ 'command': {b -> ale_linters#tiger#tigerc#GetCommand(b)},
+\ 'callback': 'ale_linters#tiger#tigerc#Handle',
 \ 'output_stream': 'stderr',
 \})
