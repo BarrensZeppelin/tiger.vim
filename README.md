@@ -11,6 +11,8 @@ Using the linter requires you to install ALE, and that the `tigerc` binary is av
 ln -s <path-to-compiler-repository>/_build/install/default/bin/tigerc ~/.local/bin/tigerc
 ```
 
+![Linter example](https://cs.au.dk/~oskarv/oops.png)
+
 ## Installation
 
 Any plugin manager will probably be able to install this plugin.
