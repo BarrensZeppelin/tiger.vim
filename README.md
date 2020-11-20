@@ -20,7 +20,7 @@ With `vim-plug` you can add the following line in your .vimrc:
 ```
 Plug 'BarrensZeppelin/tiger.vim'
 ```
-and run `:+PlugInstall` in vim afterwards.
+and run `:PlugInstall` in vim afterwards.
 
 ## Disclaimer
 
